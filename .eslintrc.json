@@ -1,0 +1,78 @@
+{
+  "root": true,
+  "plugins": ["import", "unused-imports"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "react/prop-types": 0,
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin", // 組み込みモジュール
+          "external", // npmでインストールした外部ライブラリ
+          "internal", // 自作モジュール
+          "object",
+          "type",
+          "index"
+        ],
+        "newlines-between": "always", // グループ毎にで改行を入れる
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "caseInsensitive": true // 小文字大文字を区別する
+        },
+        "pathGroups": [
+          // 指定した順番にソートされる
+          {
+            "pattern": "pages/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "api/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "components/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "provider/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "{../**,./**,pyodideFile/**}",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "{types/**,utils/**}",
+            "group": "internal",
+            "position": "after"
+          },
+          {
+            "pattern": "{img/**,design-variables}",
+            "group": "object",
+            "position": "before"
+          }
+        ]
+      }
+    ]
+  }
+}
