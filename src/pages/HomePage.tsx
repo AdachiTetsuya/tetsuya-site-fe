@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+/** @jsxImportSource @emotion/react  */
+import { css, SerializedStyles } from '@emotion/react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getFileList } from 'api/fileApi';
 
@@ -26,9 +29,16 @@ const HomePage = () => {
   return (
     <>
       <h1>ホームページ</h1>
-      <div>{listItems}</div>
+      <Link to={`/upload`}>アップロードする</Link>
+      <div css={content}>{listItems}</div>
     </>
   );
 };
 
 export default HomePage;
+
+const content: SerializedStyles = css`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+`;
